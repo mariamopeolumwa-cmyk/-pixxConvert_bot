@@ -1,7 +1,6 @@
 import os
 import logging
 import io
-import tempfile
 from datetime import datetime
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext, CallbackQueryHandler
@@ -38,10 +37,10 @@ SUPPORTED_FORMATS = {
 # HELPER FUNCTIONS
 # ============================
 
-async def convert_image(input_bytes: bytes, target_format: str) -> bytes:
+async def convert_image(input_bytes: bytes, target_format: str):
     """
     Convert an image to the target format.
-    Returns the converted image as bytes.
+    Returns the converted image as bytes and original format.
     """
     try:
         # Open the image from bytes
